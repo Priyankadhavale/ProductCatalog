@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+      {{pageTitle}}
+  </div>
+</div>
+
+<div *ngIf="product">
+  <label><h3>Title:</h3> </label>
+  <p>{{ product.title }}</p>
+  <label><h3>Description: </h3></label>
+  <p>{{ product.description }}</p>
+  <div>
+    <h3>Images for Catalog</h3>
+    <div *ngFor="let image of product.images">
+      <img src='http://localhost:5000/productcatalog/images/{{image.path}}' 
+          [title] = 'product.title'
+          [style.width.px] = 'imageWidth'
+          [style.margin.px] = 'imageMargin' />
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" [routerLink]="['']" >
+  Back
+</button>
