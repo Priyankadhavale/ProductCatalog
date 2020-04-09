@@ -31,13 +31,15 @@
             <thead>
                 <tr>
                     <th>
-                        <button class="btn btn-primary" (click) = 'toggleImage()'>
+                        <button class="btn btn-primary custom" (click) = 'toggleImage()'>
                             {{showImage ? 'Hide':'Show'}} Image
                         </button>
                     </th>
                     <th>Product</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,13 +47,16 @@
                     <td>
                         <img *ngIf = 'showImage' 
                             src='http://localhost:5000/productcatalog/images/{{product.thumbnail}}'
-                            [title] = 'product.title'
                             [style.width.px] = 'imageWidth'
                             [style.margin.px] = 'imageMargin'>
                     </td>
                     <td><a [routerLink]="['/products', product.id]" routerLinkActive="active">{{ product.id }}</a></td>
                     <td>{{product.title}}</td>
                     <td>{{product.description}}</td>
+                    <td>
+                        <button mdbBtn type="button" color="danger" rounded="true" (click)="openConfirmationDialog(product.id)" class="btn btn-danger btn-sm" mdbWavesEffect>Delete</button>
+                    </td>
+                    <td><a [routerLink]="['/ProductEdit', product.id]" class="btn btn-primary" routerLinkActive="active">Edit</a></td>
                 </tr>
             </tbody>
             

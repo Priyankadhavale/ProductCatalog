@@ -16,9 +16,11 @@
     "@angular/compiler": "~9.0.7",
     "@angular/core": "~9.0.7",
     "@angular/forms": "~9.0.7",
+    "@angular/localize": "^9.1.0",
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.4",
@@ -45,5 +47,17 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Priyankadhavale/ProductCatalog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Priyankadhavale/ProductCatalog/issues"
+  },
+  "homepage": "https://github.com/Priyankadhavale/ProductCatalog#readme"
 }

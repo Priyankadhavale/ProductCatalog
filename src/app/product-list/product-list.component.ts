@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { catalogApiService } from 'src/api/CatalogApiService/catalogapi.service';
 import { Catalog } from 'src/api/classes/Catalog';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  providers: [ ConfirmationDialogService ]
 })
 export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
@@ -27,7 +30,7 @@ export class ProductListComponent implements OnInit {
   
   filteredProduct:Catalog[];
 
-  constructor(private _catalaogApiService: catalogApiService){
+  constructor(private _catalaogApiService: catalogApiService,private confirmationDialogService: ConfirmationDialogService,private router: Router){
     
   }
   ngOnInit(): void {
@@ -36,11 +39,22 @@ export class ProductListComponent implements OnInit {
         next: data => {this.filteredProduct = data; this.products = data;},
         error: err => this.errorMessage = err
       });
-    //   data => {
-    //       this.products = data;
-    //       this.filteredProduct = data;
-    //   }
-    // );
+  }
+
+  public openConfirmationDialog(id:number) {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to delete this catalog ... ?')
+    .then((confirmed) => { debugger; console.log('User confirmed:', confirmed);
+    if(confirmed)
+    {
+      this._catalaogApiService.delete(id).subscribe((data: boolean)=>{
+        var index = this.filteredProduct.indexOf(this.filteredProduct.filter(x=> x.id === id)[0]);
+        this.filteredProduct.splice(index,1);
+        this.router.navigate(['']);
+      }) 
+    }
+         
+  })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
   toggleImage(): void {

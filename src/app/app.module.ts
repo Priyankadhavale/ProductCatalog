@@ -9,6 +9,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { RouterModule } from "@angular/router";
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductListComponent,
     ProductEditComponent,
     ProductCreateComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
       { path: '', component: ProductListComponent },
       { path: 'ProductCreate', component: ProductCreateComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
+      { path: 'ProductEdit/:productId', component: ProductEditComponent },
     ])
   ],
   providers: [catalogApiService],

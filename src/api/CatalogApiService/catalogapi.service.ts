@@ -44,6 +44,12 @@ export class catalogApiService{
       return this.httpClient.post("http://localhost:5000/productCatalog/FileUpload",file,{responseType:'text'});
     }
 
+    delete(id:number):Observable<boolean>{
+      return this.httpClient.delete<boolean>(`http://localhost:5000/productCatalog/Catalog/${id}`);
+    }
+    put(opost:Catalog):Observable<Catalog>{
+      return this.httpClient.put<Catalog>("http://localhost:5000/productCatalog/Catalog",opost,this.httpOptions);
+    }
 
     private handleError(err:HttpErrorResponse){
       let errorMessage = '';
